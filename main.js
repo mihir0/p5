@@ -1,9 +1,21 @@
 window.onload = start;
 
 function start() {
-    var width = 600, height = 600, radius = 3;
-    var padding = {left: 100, right: 100, top: 100, bottom: 100}; //this doesn't fully work if left/right, and top/bottom are different
+    var width = 500, height = 500, radius = 2;
+    var padding = {left: 80, right: 80, top: 80, bottom: 80}; //this doesn't fully work if left/right, and top/bottom are different
     var chart1 = d3.select('#chart1')
+        .append('svg')
+        .attr('width', width)
+        .attr('height', height);
+    var chart2 = d3.select('#chart2')
+        .append('svg')
+        .attr('width', width)
+        .attr('height', height);
+    var chart3 = d3.select('#chart3')
+        .append('svg')
+        .attr('width', width)
+        .attr('height', height);
+    var chart4 = d3.select('#chart4')
         .append('svg')
         .attr('width', width)
         .attr('height', height);
@@ -50,6 +62,7 @@ function start() {
             .orient("bottom");
         var salaryAxis = d3.svg.axis().scale(salaryScale)
             .tickSize(1)
+            .ticks(5)
             .orient("bottom");
         var costAxis = d3.svg.axis().scale(costScale)
             .tickSize(1)
@@ -84,12 +97,73 @@ function start() {
                 .attr("transform", "rotate(-90)")
                 .attr("y", -60)
                 .attr("dx", -height / 2)
-                // .attr("dy", ".71em")
                 .style("text-anchor", "middle")
                 .text("Cost of Attendance");
-            
+        chart2
+            .append("g")
+            .attr("transform", "translate(0," + (width - padding.left) + ")")
+            .call(salaryAxis)
+            .append("text")
+                .attr("class", "axes-label")
+                .attr("x", width / 2)
+                .attr("y", 50)
+                .style("text-anchor", "middle")
+                .text("Salary");
+        chart2
+			.append("g")
+			.attr("transform", "translate(" + padding.bottom + ", 0)")
+			.call(admissionAxis)
+			.append("text")
+                .attr("class", "axes-label")
+                .attr("transform", "rotate(-90)")
+                .attr("y", -60)
+                .attr("dx", -height / 2)
+                .style("text-anchor", "middle")
+                .text("Admission Rate");
+        chart3
+            .append("g")
+            .attr("transform", "translate(0," + (width - padding.left) + ")")
+            .call(debtAxis)
+            .append("text")
+                .attr("class", "axes-label")
+                .attr("x", width / 2)
+                .attr("y", 50)
+                .style("text-anchor", "middle")
+                .text("Debt");
+        chart3
+			.append("g")
+			.attr("transform", "translate(" + padding.bottom + ", 0)")
+			.call(incomeAxis)
+			.append("text")
+                .attr("class", "axes-label")
+                .attr("transform", "rotate(-90)")
+                .attr("y", -60)
+                .attr("dx", -height / 2)
+                .style("text-anchor", "middle")
+                .text("Average Family Income");
+        chart4
+            .append("g")
+            .attr("transform", "translate(0," + (width - padding.left) + ")")
+            .call(salaryAxis)
+            .append("text")
+                .attr("class", "axes-label")
+                .attr("x", width / 2)
+                .attr("y", 50)
+                .style("text-anchor", "middle")
+                .text("Salary");
+        chart4
+            .append("g")
+            .attr("transform", "translate(" + padding.bottom + ", 0)")
+            .call(expenditureAxis)
+            .append("text")
+                .attr("class", "axes-label")
+                .attr("transform", "rotate(-90)")
+                .attr("y", -60)
+                .attr("dx", -height / 2)
+                .style("text-anchor", "middle")
+                .text("Expenditure Per Student");
+
         // CREATE SVG ELEMENTS
-        // console.log(csvTrimmed);
         chart1.selectAll("circle")
             .data(csvTrimmed)
             .enter()
@@ -98,6 +172,45 @@ function start() {
             .attr("stroke", "black")
             .attr("cx", function(d) { return debtScale(d.debt); })
             .attr("cy", function(d) { return costScale(d.cost); })
+            .attr("r", radius)
+            .attr("class", "dots")
+            .on("click", function(d, i) {
+                console.log(d);
+            })
+        chart2.selectAll("circle")
+            .data(csvTrimmed)
+            .enter()
+            .append("circle")
+            .attr("id", function(d, i) { return i; })
+            .attr("stroke", "black")
+            .attr("cx", function(d) { return salaryScale(d.salary); })
+            .attr("cy", function(d) { return admissionScale(d.admission); })
+            .attr("r", radius)
+            .attr("class", "dots")
+            .on("click", function(d, i) {
+                console.log(d);
+            })
+        chart3.selectAll("circle")
+            .data(csvTrimmed)
+            .enter()
+            .append("circle")
+            .attr("id", function(d, i) { return i; })
+            .attr("stroke", "black")
+            .attr("cx", function(d) { return debtScale(d.debt); })
+            .attr("cy", function(d) { return incomeScale(d.income); })
+            .attr("r", radius)
+            .attr("class", "dots")
+            .on("click", function(d, i) {
+                console.log(d);
+            })
+        chart4.selectAll("circle")
+            .data(csvTrimmed)
+            .enter()
+            .append("circle")
+            .attr("id", function(d, i) { return i; })
+            .attr("stroke", "black")
+            .attr("cx", function(d) { return salaryScale(d.salary); })
+            .attr("cy", function(d) { return expenditureScale(d.expenditure); })
             .attr("r", radius)
             .attr("class", "dots")
             .on("click", function(d, i) {

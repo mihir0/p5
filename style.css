@@ -1,3 +1,11 @@
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 50%;
+}
+
 .dots {
     fill: black;
     stroke: black;   
