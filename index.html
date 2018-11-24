@@ -12,5 +12,28 @@
     <div id="chart2"></div>
     <div id="chart3"></div>
     <div id="chart4"></div>
+    
+    <script>
+        var width = 500;
+        var height = 500;
+    
+        d3.csv("colleges.csv", function(csv) {
+            for (var i=0; i<csv.length; ++i) {
+                csv[i].['Median Debt'] = Number(csv[i].['Median Debt']); //Dont know which debt we wanted to use we can change if wanted
+                csv[i].['Mean Earnings 8 years After Entry'] = Number(csv[i].['Mean Earnings 8 years After Entry']);
+                csv[i].['Attendance Cost'] = Number(csv[i].['Attendance Cost']);
+                csv[i].['Median Family Income'] = Number(csv[i].['Median Family Income']);
+                csv[i].['Admission Rate'] = Number(csv[i].['Admission Rate']);
+                csv[i].['Expenditure Per Student'] = Number(csv[i].['Expenditure Per Student']);
+            }
+            var debtExtent = d3.extent(csv, function(row) { return row.['Median Debt']; });
+            var salaryExtent = d3.extent(csv, function(row) { return row.['Mean Earnings 8 Years After Entry']; });
+            var costExtent = d3.extent(csv, function(row) { return row.['Attendance Cost']; });
+            var incomeExtent = d3.extent(csv, function(row) { return row.['Median Family Income']; });
+            var admissionExtent = d3.extent(csv, function(row) { return row.['Admission Rate']; });
+            var expenditureExtent = d3.extent(csv, function(row) { return row.['Expenditure Per Student']; });
+            
+    })
+    </script>
 </body>
 </html>
