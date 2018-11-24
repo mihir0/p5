@@ -1,0 +1,9 @@
+.dots {
+    fill: black;
+    stroke: black;   
+}
+
+.dots:hover {
+    fill:red;
+    stroke: red;
+}
