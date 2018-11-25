@@ -24,5 +24,40 @@
             <div id="chart4"></div>
         </div>
     </div>
+    <div>
+        <p>SAT Score Slider:</p>
+        <p>Value: <span id="satScore"></span></p>
+        <input type="range" min="400" max="1600" class="slider" id="SAT">
+        
+        <p>ACT Score Slider:</p>
+        <p>Value: <span id="actScore"></span></p>
+        <input type="range" min="1" max="36" class="slider" id="ACT">
+        
+    </div>
+    
 </body>
+ 
+<!--i put this script here cause it wasnt working in the js file no clue why
+-->
+<script>
+    //sat
+    var satslider = document.getElementById("SAT");
+    var satoutput = document.getElementById("satScore");
+    satoutput.innerHTML = document.getElementById("SAT").value;
+
+    satslider.oninput = function() {
+      satoutput.innerHTML = this.value;
+    }
+    
+    //act
+    var actslider = document.getElementById("ACT");
+    var actoutput = document.getElementById("actScore");
+    actoutput.innerHTML = document.getElementById("ACT").value;
+    
+    actslider.oninput = function() {
+        actoutput.innerHTML = this.value;
+    }
+    
+    
+</script>
 </html>
