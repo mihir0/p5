@@ -1,7 +1,7 @@
 window.onload = start;
 
 function start() {
-    var width = 500, height = 500, radius = 2;
+    var width = 700, height = 400, radius = 2;
     var padding = {left: 80, right: 80, top: 80, bottom: 80}; //this doesn't fully work if left/right, and top/bottom are different
     var chart1 = d3.select('#chart1')
         .append('svg')
@@ -59,28 +59,34 @@ function start() {
         var debtAxis = d3.svg.axis().scale(debtScale)
             // .tickSubdivide(true)
             .tickSize(1)
+            .tickFormat(function(d){ return String(d / 1000) + 'k'; })
             .orient("bottom");
         var salaryAxis = d3.svg.axis().scale(salaryScale)
             .tickSize(1)
             .ticks(5)
+            .tickFormat(function(d){ return String(d / 1000) + 'k'; })
             .orient("bottom");
         var costAxis = d3.svg.axis().scale(costScale)
             .tickSize(1)
+            .tickFormat(function(d){ return String(d / 1000) + 'k'; })
             .orient("left");
         var admissionAxis = d3.svg.axis().scale(admissionScale)
             .tickSize(1)
+            .tickFormat(function(d){ return String(d * 100) + '%'; })
             .orient("left");
         var incomeAxis = d3.svg.axis().scale(incomeScale)
             .tickSize(1)
+            .tickFormat(function(d){ return String(d / 1000) + 'k'; })
             .orient("left");
         var expenditureAxis = d3.svg.axis().scale(expenditureScale)
             .tickSize(1)
+            .tickFormat(function(d){ return String(d / 1000) + 'k'; })
             .orient("left");
 
         // DRAW AXES
         chart1
             .append("g")
-            .attr("transform", "translate(0," + (width - padding.left) + ")")
+            .attr("transform", "translate(0," + (height - padding.bottom) + ")")
             .call(debtAxis)
             .append("text")
                 .attr("class", "axes-label")
@@ -90,7 +96,7 @@ function start() {
                 .text("Debt");
         chart1
 			.append("g")
-			.attr("transform", "translate(" + padding.bottom + ", 0)")
+			.attr("transform", "translate(" + padding.left + ", 0)")
 			.call(costAxis)
 			.append("text")
                 .attr("class", "axes-label")
@@ -101,7 +107,7 @@ function start() {
                 .text("Cost of Attendance");
         chart2
             .append("g")
-            .attr("transform", "translate(0," + (width - padding.left) + ")")
+            .attr("transform", "translate(0," + (height - padding.bottom) + ")")
             .call(salaryAxis)
             .append("text")
                 .attr("class", "axes-label")
@@ -111,7 +117,7 @@ function start() {
                 .text("Salary");
         chart2
 			.append("g")
-			.attr("transform", "translate(" + padding.bottom + ", 0)")
+			.attr("transform", "translate(" + padding.left + ", 0)")
 			.call(admissionAxis)
 			.append("text")
                 .attr("class", "axes-label")
@@ -122,7 +128,7 @@ function start() {
                 .text("Admission Rate");
         chart3
             .append("g")
-            .attr("transform", "translate(0," + (width - padding.left) + ")")
+            .attr("transform", "translate(0," + (height - padding.bottom) + ")")
             .call(debtAxis)
             .append("text")
                 .attr("class", "axes-label")
@@ -132,7 +138,7 @@ function start() {
                 .text("Debt");
         chart3
 			.append("g")
-			.attr("transform", "translate(" + padding.bottom + ", 0)")
+			.attr("transform", "translate(" + padding.left + ", 0)")
 			.call(incomeAxis)
 			.append("text")
                 .attr("class", "axes-label")
@@ -143,7 +149,7 @@ function start() {
                 .text("Average Family Income");
         chart4
             .append("g")
-            .attr("transform", "translate(0," + (width - padding.left) + ")")
+            .attr("transform", "translate(0," + (height - padding.bottom) + ")")
             .call(salaryAxis)
             .append("text")
                 .attr("class", "axes-label")
@@ -153,7 +159,7 @@ function start() {
                 .text("Salary");
         chart4
             .append("g")
-            .attr("transform", "translate(" + padding.bottom + ", 0)")
+            .attr("transform", "translate(" + padding.left + ", 0)")
             .call(expenditureAxis)
             .append("text")
                 .attr("class", "axes-label")
@@ -163,7 +169,7 @@ function start() {
                 .style("text-anchor", "middle")
                 .text("Expenditure Per Student");
 
-        // CREATE SVG ELEMENTS
+        // DRAW SVG ELEMENTS
         chart1.selectAll("circle")
             .data(csvTrimmed)
             .enter()
