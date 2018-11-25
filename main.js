@@ -1,21 +1,21 @@
 window.onload = start;
-
+var chart1, chart2, chart3, chart4;
 function start() {
     var width = 700, height = 400, radius = 2;
-    var padding = {left: 80, right: 80, top: 80, bottom: 80}; //this doesn't fully work if left/right, and top/bottom are different
-    var chart1 = d3.select('#chart1')
+    var padding = {left: 80, right: 80, top: 80, bottom: 80};
+    chart1 = d3.select('#chart1')
         .append('svg')
         .attr('width', width)
         .attr('height', height);
-    var chart2 = d3.select('#chart2')
+    chart2 = d3.select('#chart2')
         .append('svg')
         .attr('width', width)
         .attr('height', height);
-    var chart3 = d3.select('#chart3')
+    chart3 = d3.select('#chart3')
         .append('svg')
         .attr('width', width)
         .attr('height', height);
-    var chart4 = d3.select('#chart4')
+    chart4 = d3.select('#chart4')
         .append('svg')
         .attr('width', width)
         .attr('height', height);
@@ -95,10 +95,10 @@ function start() {
                 .style("text-anchor", "middle")
                 .text("Debt");
         chart1
-			.append("g")
-			.attr("transform", "translate(" + padding.left + ", 0)")
-			.call(costAxis)
-			.append("text")
+            .append("g")
+            .attr("transform", "translate(" + padding.left + ", 0)")
+            .call(costAxis)
+            .append("text")
                 .attr("class", "axes-label")
                 .attr("transform", "rotate(-90)")
                 .attr("y", -60)
@@ -181,7 +181,7 @@ function start() {
             .attr("r", radius)
             .attr("class", "dots")
             .on("click", function(d, i) {
-                console.log(d);
+                onClick(d);
             })
         chart2.selectAll("circle")
             .data(csvTrimmed)
@@ -194,7 +194,7 @@ function start() {
             .attr("r", radius)
             .attr("class", "dots")
             .on("click", function(d, i) {
-                console.log(d);
+                onClick(d);
             })
         chart3.selectAll("circle")
             .data(csvTrimmed)
@@ -207,7 +207,7 @@ function start() {
             .attr("r", radius)
             .attr("class", "dots")
             .on("click", function(d, i) {
-                console.log(d);
+                onClick(d);
             })
         chart4.selectAll("circle")
             .data(csvTrimmed)
@@ -220,11 +220,20 @@ function start() {
             .attr("r", radius)
             .attr("class", "dots")
             .on("click", function(d, i) {
-                console.log(d);
+                onClick(d);
             })
     });
 }
 
+function onClick(d) {
+    // highlight clicked datapoint on all graphs
+    console.log(d);
+    chart1.selectAll('circle').classed('clicked', (circle) => (circle.index === d.index));
+    chart2.selectAll('circle').classed('clicked', (circle) => (circle.index === d.index));
+    chart3.selectAll('circle').classed('clicked', (circle) => (circle.index === d.index));
+    chart4.selectAll('circle').classed('clicked', (circle) => (circle.index === d.index));
+
+}
 
 function mouseover() {
 
