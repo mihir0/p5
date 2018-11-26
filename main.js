@@ -36,6 +36,8 @@ function start() {
             temp['admission'] = Number(csv[i]['Admission Rate']);
             temp['expenditure'] = Number(csv[i]['Expenditure Per Student']);
             temp['index'] = Number(i);
+            temp['Region'] = csv[i]['Region'];
+            temp['Locale'] = csv[i]['Locale'];
             csvTrimmed.push(temp);
         }
 
@@ -239,6 +241,61 @@ function mouseover() {
 
 }
 
-//SAT Slider
+//Widgets :)
 
+function changeRegion() {
+    chart1.selectAll('circle')
+    .style('fill', function(d){
+        return colorRegion(d);
+    })
+    chart2.selectAll('circle')
+    .style('fill', function(d){
+        return colorRegion(d);
+    })
+    chart3.selectAll('circle')
+    .style('fill', function(d){
+        return colorRegion(d);
+    })
+    chart4.selectAll('circle')
+    .style('fill', function(d){
+        return colorRegion(d);
+    })
 
+}
+
+function colorRegion(d) {
+    if (d.Region == document.getElementById("region").value) {
+        return "magenta";
+    }
+    else {
+        return 'black';
+    }
+}
+
+function changeLocale() {
+    chart1.selectAll('circle')
+    .style('fill', function(d){
+        return colorLocale(d);
+    })
+    chart2.selectAll('circle')
+    .style('fill', function(d){
+        return colorLocale(d);
+    })
+    chart3.selectAll('circle')
+    .style('fill', function(d){
+        return colorLocale(d);
+    })
+    chart4.selectAll('circle')
+    .style('fill', function(d){
+        return colorLocale(d);
+    })
+}
+
+function colorLocale(d) {
+    if (d.Locale == document.getElementById("locale").value) {
+        return "yellow";
+    }
+    else {
+        return 'black';
+    }
+}

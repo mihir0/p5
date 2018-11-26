@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="graph">
     <div class="row">
         <div class="column">
             <div id="chart1"></div>
@@ -24,7 +25,9 @@
             <div id="chart4"></div>
         </div>
     </div>
+    </div>
     <div>
+        
         <p>SAT Score Slider:</p>
         <p>Value: <span id="satScore"></span></p>
         <input type="range" min="400" max="1600" class="slider" id="SAT">
@@ -35,7 +38,7 @@
         
         <br/>
         <p>Region:</p>
-        <select id=region>
+        <select id="region" onchange="changeRegion()">
             <option value="Far West">Far West</option>
             <option value="Great Lakes">Great Lakes</option>
             <option value="Great Plains">Great Plains</option>
@@ -49,7 +52,7 @@
         
         <br/>
         <p>Locale:</p>
-        <select id=locale>
+        <select id="locale" onchange="changeLocale()">
             <option value="Distant Rural">Distant Rural</option>
             <option value="Distant Town">Distant Town</option>
             <option value="Fringe Rural">Fringe Rural</option>
@@ -66,7 +69,8 @@
     
 </body>
  
-<!--i put this script here cause it wasnt working in the js file no clue why
+<!--i put this script here cause it wasnt working in the js file no clue why. 
+    something with the output.innerhtml wasnt connecting to the html file
 -->
 <script>
     //sat
