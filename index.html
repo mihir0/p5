@@ -27,6 +27,7 @@
     </div>
     </div>
     <div>
+
         
         <p>SAT Score Slider:</p>
         <p>Value: <span id="satScore"></span></p>
@@ -38,7 +39,8 @@
         
         <br/>
         <p>Region:</p>
-        <select id="region" onchange="changeRegion()">
+        <select id="region" onchange="change()">
+            <option value="all" selected>All</option>
             <option value="Far West">Far West</option>
             <option value="Great Lakes">Great Lakes</option>
             <option value="Great Plains">Great Plains</option>
@@ -52,7 +54,8 @@
         
         <br/>
         <p>Locale:</p>
-        <select id="locale" onchange="changeLocale()">
+        <select id="locale" onchange="change()">
+            <option value="all" selected>All</option>
             <option value="Distant Rural">Distant Rural</option>
             <option value="Distant Town">Distant Town</option>
             <option value="Fringe Rural">Fringe Rural</option>

@@ -243,59 +243,52 @@ function mouseover() {
 
 //Widgets :)
 
-function changeRegion() {
+
+function change() {
     chart1.selectAll('circle')
-    .style('fill', function(d){
-        return colorRegion(d);
+    .style('visibility', function(d){
+        return select(d);
     })
     chart2.selectAll('circle')
-    .style('fill', function(d){
-        return colorRegion(d);
+    .style('visibility', function(d){
+        return select(d);
     })
     chart3.selectAll('circle')
-    .style('fill', function(d){
-        return colorRegion(d);
+    .style('visibility', function(d){
+        return select(d);
     })
     chart4.selectAll('circle')
-    .style('fill', function(d){
-        return colorRegion(d);
+    .style('visibility', function(d){
+        return select(d);
     })
-
+    
+    
 }
 
-function colorRegion(d) {
+function select(d) {
+    var r = false;
+    var l = false;
+    if (document.getElementById("region").value == "all") {
+        //return "visible";
+        r = true;
+    }
     if (d.Region == document.getElementById("region").value) {
-        return "magenta";
+        //return "visible";
+        r = true;
     }
-    else {
-        return 'black';
+    if (document.getElementById("locale").value == "all") {
+        l = true;
     }
-}
-
-function changeLocale() {
-    chart1.selectAll('circle')
-    .style('fill', function(d){
-        return colorLocale(d);
-    })
-    chart2.selectAll('circle')
-    .style('fill', function(d){
-        return colorLocale(d);
-    })
-    chart3.selectAll('circle')
-    .style('fill', function(d){
-        return colorLocale(d);
-    })
-    chart4.selectAll('circle')
-    .style('fill', function(d){
-        return colorLocale(d);
-    })
-}
-
-function colorLocale(d) {
     if (d.Locale == document.getElementById("locale").value) {
-        return "yellow";
+        l = true;
+    }
+   
+    if (r & l) {
+        return "visible";
     }
     else {
-        return 'black';
+        return "hidden";
     }
 }
+
+
