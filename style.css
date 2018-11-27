@@ -22,3 +22,9 @@
     stroke: red !important;
     stroke-width: 5px;
 }
+
+.brush {
+    fill-opacity: .1;
+    stroke: #fff;
+    shape-rendering: crispEdges;
+}
