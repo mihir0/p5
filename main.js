@@ -1,8 +1,18 @@
+
 window.onload = start;
 var chart1, chart2, chart3, chart4;
 function start() {
     var width = 700, height = 400, radius = 2;
     var padding = {left: 80, right: 80, top: 80, bottom: 80};
+
+    //Method to move data marks to the front
+    //Source: https://gist.github.com/trtg/3922684 
+    d3.selection.prototype.moveToFront = function() {
+        return this.each(function(){
+        this.parentNode.appendChild(this);
+        });
+    };
+    
     chart1 = d3.select('#chart1')
         .append('svg')
         .attr('width', width)
@@ -228,11 +238,14 @@ function start() {
 function onClick(d) {
     // highlight clicked datapoint on all graphs
     console.log(d);
-    chart1.selectAll('circle').classed('clicked', (circle) => (circle.index === d.index));
-    chart2.selectAll('circle').classed('clicked', (circle) => (circle.index === d.index));
-    chart3.selectAll('circle').classed('clicked', (circle) => (circle.index === d.index));
-    chart4.selectAll('circle').classed('clicked', (circle) => (circle.index === d.index));
-
+    chart1.selectAll('circle').classed('clicked', (circle) => (circle.index === d.index))
+        .moveToFront();
+    chart2.selectAll('circle').classed('clicked', (circle) => (circle.index === d.index))
+        .moveToFront();
+    chart3.selectAll('circle').classed('clicked', (circle) => (circle.index === d.index))
+        .moveToFront();
+    chart4.selectAll('circle').classed('clicked', (circle) => (circle.index === d.index))
+        .moveToFront();
 }
 
 function mouseover() {

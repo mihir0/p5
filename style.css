@@ -14,9 +14,11 @@
 .dots:hover {
     fill:rgb(11, 243, 11);
     stroke: rgb(11, 243, 11);
+    stroke-width: 5px;
 }
 
 .clicked {
     fill: red !important;
     stroke: red !important;
+    stroke-width: 5px;
 }
