@@ -243,6 +243,25 @@ function mouseover() {
 
 }
 
+
+    //sat
+    var satslider = document.getElementById("SAT");
+    var satoutput = document.getElementById("satScore");
+    satoutput.innerHTML = document.getElementById("SAT").value;
+
+    satslider.oninput = function() {
+      satoutput.innerHTML = this.value;
+    }
+    
+    //act
+    var actslider = document.getElementById("ACT");
+    var actoutput = document.getElementById("actScore");
+    actoutput.innerHTML = document.getElementById("ACT").value;
+    
+    actslider.oninput = function() {
+        actoutput.innerHTML = this.value;
+    }
+
 //Widgets :)
 
 

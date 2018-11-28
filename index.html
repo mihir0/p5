@@ -71,28 +71,5 @@
     
 </body>
 <script src="main.js"></script>
-<!--i put this script here cause it wasnt working in the js file no clue why. 
-    something with the output.innerhtml wasnt connecting to the html file
--->
-<script>
-    //sat
-    var satslider = document.getElementById("SAT");
-    var satoutput = document.getElementById("satScore");
-    satoutput.innerHTML = document.getElementById("SAT").value;
 
-    satslider.oninput = function() {
-      satoutput.innerHTML = this.value;
-    }
-    
-    //act
-    var actslider = document.getElementById("ACT");
-    var actoutput = document.getElementById("actScore");
-    actoutput.innerHTML = document.getElementById("ACT").value;
-    
-    actslider.oninput = function() {
-        actoutput.innerHTML = this.value;
-    }
-    
-    
-</script>
 </html>
