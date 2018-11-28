@@ -46,3 +46,11 @@
     background: #4CAF50;
     cursor: pointer;
 }
+
+.dropdown {
+    color: black;
+    padding: 8px 16px;
+    border: 1px solid #d3d3d3;
+    cursor: pointer;
+    user-select: none;
+}

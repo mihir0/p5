@@ -38,6 +38,8 @@ function start() {
             temp['index'] = Number(i);
             temp['Region'] = csv[i]['Region'];
             temp['Locale'] = csv[i]['Locale'];
+            temp["satData"] = csv[i]["SAT Average"];
+            temp['actData'] = csv[i]["ACT Median"];
             csvTrimmed.push(temp);
         }
 
@@ -244,6 +246,12 @@ function mouseover() {
 //Widgets :)
 
 
+
+// function test() {
+//     console.log(document.getElementById("SAT").value);
+//     console.log(document.getElementById("ACT").value);
+// }
+
 function change() {
     chart1.selectAll('circle')
     .style('visibility', function(d){
@@ -268,6 +276,8 @@ function change() {
 function select(d) {
     var r = false;
     var l = false;
+    var s = false;
+    var a = false;
     if (document.getElementById("region").value == "all") {
         //return "visible";
         r = true;
@@ -282,8 +292,19 @@ function select(d) {
     if (d.Locale == document.getElementById("locale").value) {
         l = true;
     }
-   
-    if (r & l) {
+    if (document.getElementById("SAT").value == 400) {
+        s = true;
+    }
+    if (d.satData >= document.getElementById("SAT").value) {
+        s = true;
+    }
+    if (document.getElementById("ACT").value == 1) {
+        a = true;
+    }
+    if (d.actData >= document.getElementById("ACT").value) {
+        a = true;
+    }
+    if (r & l & s & a) {
         return "visible";
     }
     else {

@@ -4,7 +4,6 @@
 	<meta charset="UTF-8">
 	<title>Project 5</title>
     <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="main.js"></script>
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -31,15 +30,15 @@
         
         <p>SAT Score Slider:</p>
         <p>Value: <span id="satScore"></span></p>
-        <input type="range" min="400" max="1600" class="slider" id="SAT">
+        <input type="range" min="400" max="1600" value="400" class="slider" id="SAT" onchange="change()">
         
         <p>ACT Score Slider:</p>
         <p>Value: <span id="actScore"></span></p>
-        <input type="range" min="1" max="36" class="slider" id="ACT">
+        <input type="range" min="1" max="36" value="1" class="slider" id="ACT" onchange="change()">
         
         <br/>
         <p>Region:</p>
-        <select id="region" onchange="change()">
+        <select id="region" class="dropdown" onchange="change()">
             <option value="all" selected>All</option>
             <option value="Far West">Far West</option>
             <option value="Great Lakes">Great Lakes</option>
@@ -54,7 +53,7 @@
         
         <br/>
         <p>Locale:</p>
-        <select id="locale" onchange="change()">
+        <select id="locale" class="dropdown" onchange="change()">
             <option value="all" selected>All</option>
             <option value="Distant Rural">Distant Rural</option>
             <option value="Distant Town">Distant Town</option>
@@ -71,7 +70,7 @@
     </div>
     
 </body>
- 
+<script src="main.js"></script>
 <!--i put this script here cause it wasnt working in the js file no clue why. 
     something with the output.innerhtml wasnt connecting to the html file
 -->
