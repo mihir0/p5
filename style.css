@@ -1,5 +1,6 @@
 .row {
     display: flex;
+    padding-left: 20px;
 }
 
 .column {
@@ -36,4 +37,13 @@
 .faded {
     fill: lightgray;
     stroke: none;
+}
+
+h1 {
+    text-align: center;
+}
+
+#universityTitle {
+    margin-left: 20px !important;
+    margin-right: 20px !important;
 }
