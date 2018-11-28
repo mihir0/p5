@@ -24,7 +24,16 @@
 }
 
 .brush {
-    fill-opacity: .1;
-    stroke: #fff;
+    fill-opacity: .05;
+    stroke: blue;
     shape-rendering: crispEdges;
+}
+
+.brushed {
+    fill: yellow;
+}
+
+.faded {
+    fill: lightgray;
+    stroke: none;
 }

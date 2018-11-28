@@ -1,6 +1,8 @@
 
 window.onload = start;
 var chart1, chart2, chart3, chart4;
+var brush1, brush2, brush3, brush4;
+var brush1_container, brush2_container, brush3_container, brush4_container;
 function start() {
     var width = 700, height = 500, radius = 2;
     var padding = {left: 80, right: 80, top: 80, bottom: 80};
@@ -94,32 +96,32 @@ function start() {
             .orient("left");
 
         // CREATE BRUSHES & CONTAINERS
-        var brush1 = d3.svg.brush().extent([debtExtent[0], costExtent[0]], [debtExtent[1], costExtent[1]])
+        brush1 = d3.svg.brush().extent([debtExtent[0], costExtent[0]], [debtExtent[1], costExtent[1]])
             .x(debtScale).y(costScale)
-            .on("brush", function(){})
-            .on("brushstart", function(){ console.log("starting brush"); });
-        var brush1_container = chart1.append('g')
+            .on("brush", brushing('chart1'))
+            .on("brushstart", brushstart('brush1'));
+        brush1_container = chart1.append('g')
             .attr("class", "brush")
             .call(brush1)
-        var brush2 = d3.svg.brush().extent([salaryExtent[0], admissionExtent[0]], [salaryExtent[1], admissionExtent[1]])
+        brush2 = d3.svg.brush().extent([salaryExtent[0], admissionExtent[0]], [salaryExtent[1], admissionExtent[1]])
             .x(salaryScale).y(admissionScale)
-            .on("brush", function(){})
-            .on("brushstart", function(){ console.log("starting brush"); });
-        var brush2_container = chart2.append('g')
+            .on("brush", brushing('chart2'))
+            .on("brushstart", brushstart('brush2'));
+        brush2_container = chart2.append('g')
             .attr("class", "brush")
             .call(brush2)
-        var brush3 = d3.svg.brush().extent([debtExtent[0], incomeExtent[0]], [debtExtent[1], incomeExtent[1]])
+        brush3 = d3.svg.brush().extent([debtExtent[0], incomeExtent[0]], [debtExtent[1], incomeExtent[1]])
             .x(debtScale).y(incomeScale)
-            .on("brush", function(){})
-            .on("brushstart", function(){ console.log("starting brush"); });
-        var brush3_container = chart3.append('g')
+            .on("brush", brushing('chart3'))
+            .on("brushstart", brushstart('brush3'));
+        brush3_container = chart3.append('g')
             .attr("class", "brush")
             .call(brush3)
-        var brush4 = d3.svg.brush().extent([salaryExtent[0], expenditureExtent[0]], [salaryExtent[1], expenditureExtent[1]])
+        brush4 = d3.svg.brush().extent([salaryExtent[0], expenditureExtent[0]], [salaryExtent[1], expenditureExtent[1]])
             .x(salaryScale).y(expenditureScale)
-            .on("brush", function(){})
-            .on("brushstart", function(){ console.log("starting brush"); });
-        var brush4_container = chart4.append('g')
+            .on("brush", brushing('chart4'))
+            .on("brushstart", brushstart('brush4'));
+        brush4_container = chart4.append('g')
             .attr("class", "brush")
             .call(brush4)
 
@@ -274,6 +276,47 @@ function onClick(d) {
     chart4.selectAll('circle').classed('clicked', (circle) => (circle.index === d.index));
 }
 
-function mouseover() {
+function brushing(chartName) {
+    return function() {
+        let e; // extent of appropriate brush
+        let x; // name of x-axis data 
+        let y; // name of y-axis data
+        if (chartName === 'chart1') { e = brush1.extent(); x = 'debt'; y = 'cost'; }
+        if (chartName === 'chart2') { e = brush2.extent(); x = 'salary'; y = 'admission'; }
+        if (chartName === 'chart3') { e = brush3.extent(); x = 'debt'; y = 'income'; }
+        if (chartName === 'chart4') { e = brush4.extent(); x = 'salary'; y = 'expenditure'; }
+        // console.log(e);
+        // if empty brush
+        if (e[0][0] == e[1][0] && e[0][1] == e[1][1]) {
+            console.log('empty brush');
+            return;
+        }
+        
+        let charts = [chart1, chart2, chart3, chart4];
+        charts.forEach((chart) => {
+            chart.selectAll("circle").classed("faded", (d) => {
+                return !((e[0][0] <= d[x] && e[1][0] >= d[x]) && (e[0][1] <= d[y] && e[1][1] >= d[y]));
+            });
+        });
+    };
+}
 
+function brushstart(brushName) {
+    return function() {
+        let currentBrush;
+        if (brushName === 'brush1') { currentBrush = 0; }
+        if (brushName === 'brush2') { currentBrush = 1; }
+        if (brushName === 'brush3') { currentBrush = 2; }
+        if (brushName === 'brush4') { currentBrush = 3; }
+        let containers = [brush1_container, brush2_container, brush3_container, brush4_container];
+        let brushes = [brush1, brush2, brush3, brush4];
+        console.log('brushstart');
+        d3.selectAll("circle").classed('faded', false);
+        for (var i = 0; i < 4; i++) {
+            if (i != currentBrush) {
+                console.log(i, currentBrush);
+                containers[i].call(brushes[i].clear());
+            }
+        }
+    };
 }
