@@ -38,8 +38,8 @@ function start() {
             temp['index'] = Number(i);
             temp['Region'] = csv[i]['Region'];
             temp['Locale'] = csv[i]['Locale'];
-            temp["satData"] = csv[i]["SAT Average"];
-            temp['actData'] = csv[i]["ACT Median"];
+            temp["satData"] = Number(csv[i]["SAT Average"]);
+            temp['actData'] = Number(csv[i]["ACT Median"]);
             csvTrimmed.push(temp);
         }
 
