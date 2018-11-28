@@ -48,6 +48,10 @@ function start() {
             temp['admission'] = Number(csv[i]['Admission Rate']);
             temp['expenditure'] = Number(csv[i]['Expenditure Per Student']);
             temp['index'] = Number(i);
+            temp['Region'] = csv[i]['Region'];
+            temp['Locale'] = csv[i]['Locale'];
+            temp["satData"] = Number(csv[i]["SAT Average"]);
+            temp['actData'] = Number(csv[i]["ACT Median"]);
             csvTrimmed.push(temp);
         }
 
@@ -320,3 +324,93 @@ function brushstart(brushName) {
         }
     };
 }
+
+
+    //sat
+    var satslider = document.getElementById("SAT");
+    var satoutput = document.getElementById("satScore");
+    satoutput.innerHTML = document.getElementById("SAT").value;
+
+    satslider.oninput = function() {
+      satoutput.innerHTML = this.value;
+    }
+    
+    //act
+    var actslider = document.getElementById("ACT");
+    var actoutput = document.getElementById("actScore");
+    actoutput.innerHTML = document.getElementById("ACT").value;
+    
+    actslider.oninput = function() {
+        actoutput.innerHTML = this.value;
+    }
+
+//Widgets :)
+
+
+
+// function test() {
+//     console.log(document.getElementById("SAT").value);
+//     console.log(document.getElementById("ACT").value);
+// }
+
+function change() {
+    chart1.selectAll('circle')
+    .style('visibility', function(d){
+        return select(d);
+    })
+    chart2.selectAll('circle')
+    .style('visibility', function(d){
+        return select(d);
+    })
+    chart3.selectAll('circle')
+    .style('visibility', function(d){
+        return select(d);
+    })
+    chart4.selectAll('circle')
+    .style('visibility', function(d){
+        return select(d);
+    })
+    
+    
+}
+
+function select(d) {
+    var r = false;
+    var l = false;
+    var s = false;
+    var a = false;
+    if (document.getElementById("region").value == "all") {
+        //return "visible";
+        r = true;
+    }
+    if (d.Region == document.getElementById("region").value) {
+        //return "visible";
+        r = true;
+    }
+    if (document.getElementById("locale").value == "all") {
+        l = true;
+    }
+    if (d.Locale == document.getElementById("locale").value) {
+        l = true;
+    }
+    if (document.getElementById("SAT").value == 400) {
+        s = true;
+    }
+    if (d.satData >= document.getElementById("SAT").value) {
+        s = true;
+    }
+    if (document.getElementById("ACT").value == 1) {
+        a = true;
+    }
+    if (d.actData >= document.getElementById("ACT").value) {
+        a = true;
+    }
+    if (r & l & s & a) {
+        return "visible";
+    }
+    else {
+        return "hidden";
+    }
+}
+
+
