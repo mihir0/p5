@@ -325,34 +325,25 @@ function brushstart(brushName) {
     };
 }
 
+//sat
+var satslider = document.getElementById("SAT");
+var satoutput = document.getElementById("satScore");
+satoutput.innerHTML = document.getElementById("SAT").value;
 
-    //sat
-    var satslider = document.getElementById("SAT");
-    var satoutput = document.getElementById("satScore");
-    satoutput.innerHTML = document.getElementById("SAT").value;
+satslider.oninput = function() {
+    satoutput.innerHTML = this.value;
+}
 
-    satslider.oninput = function() {
-      satoutput.innerHTML = this.value;
-    }
-    
-    //act
-    var actslider = document.getElementById("ACT");
-    var actoutput = document.getElementById("actScore");
-    actoutput.innerHTML = document.getElementById("ACT").value;
-    
-    actslider.oninput = function() {
-        actoutput.innerHTML = this.value;
-    }
+//act
+var actslider = document.getElementById("ACT");
+var actoutput = document.getElementById("actScore");
+actoutput.innerHTML = document.getElementById("ACT").value;
+
+actslider.oninput = function() {
+    actoutput.innerHTML = this.value;
+}
 
 //Widgets :)
-
-
-
-// function test() {
-//     console.log(document.getElementById("SAT").value);
-//     console.log(document.getElementById("ACT").value);
-// }
-
 function change() {
     chart1.selectAll('circle')
     .style('visibility', function(d){
@@ -370,8 +361,6 @@ function change() {
     .style('visibility', function(d){
         return select(d);
     })
-    
-    
 }
 
 function select(d) {
