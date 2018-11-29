@@ -31,58 +31,57 @@
         <div class="column main">
             <div class="well">
                 <span>
-                    <h1 id="detailUniversityTitle">TEST</h1>
+                    <h1 class="card-title" id="detailUniversityTitle"> </h1>
                 </span>
                 <hr>
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <span><b>Control: </b></span><span id="detailControl">TEST</span>
+                        <span><b>Control: </b></span><span id="detailControl"> </span>
                     </li>
                     <li class="list-group-item">
-                        <span><b>Region: </b></span><span id="detailRegion">TEST</span>
+                        <span><b>Region: </b></span><span id="detailRegion"> </span>
                     </li>
                     <li class="list-group-item">
-                        <span><b>Locale: </b></span><span id="detailLocale">TEST</span>
+                        <span><b>Locale: </b></span><span id="detailLocale"> </span>
                     </li>
                     <li class="list-group-item">
-                        <span><b>Admission Rate: </b></span><span id="detailAdmission">TEST</span>
+                        <span><b>Admission Rate: </b></span><span id="detailAdmission"> </span>
                     </li>
                     <li class="list-group-item">
-                        <span><b>ACT Median: </b></span><span id="detailAct">TEST</span>
+                        <span><b>ACT Median: </b></span><span id="detailAct"> </span>
                     </li>
                     <li class="list-group-item">
-                        <span><b>SAT Average: </b></span><span id="detailSat">TEST</span>
+                        <span><b>SAT Average: </b></span><span id="detailSat"> </span>
                     </li>
                     <li class="list-group-item">
-                        <span><b>Undergrad Population: </b></span><span id="detailUndergrad">TEST</span>
+                        <span><b>Undergrad Population: </b></span><span id="detailUndergrad"> </span>
                     </li>
                     <li class="list-group-item">
-                        <span><b>Average Cost: </b></span><span id="detailCost">TEST</span>
+                        <span><b>Average Cost: </b></span><span id="detailCost"> </span>
                     </li>
                     <li class="list-group-item">
-                        <span><b>Median Debt: </b></span><span id="detailDebt">TEST</span>
+                        <span><b>Median Debt: </b></span><span id="detailDebt"> </span>
                     </li>
                     <li class="list-group-item">
-                        <span><b>Mean Earnings 8 Years After Entry: </b></span><span id="detailSalary">TEST</span>
+                        <span><b>Mean Earnings 8 Years After Entry: </b></span><span id="detailSalary"> </span>
                     </li>
                     <li class="list-group-item">
-                        <span><b>Average Family Income: </b></span><span id="detailIncome">TEST</span>
+                        <span><b>Average Family Income: </b></span><span id="detailIncome"> </span>
                     </li>
                     <li class="list-group-item">
-                        <span><b>Expenditure Per Student: </b></span><span id="detailExpenditure">TEST</span>
+                        <span><b>Expenditure Per Student: </b></span><span id="detailExpenditure"> </span>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
-    <div>
-        <p>SAT Score Slider:</p>
-        <p>Value: <span id="satScore"></span></p>
-        <input type="range" min="400" max="1600" value="400" class="slider" id="SAT" onchange="change()">
-        
-        <p>ACT Score Slider:</p>
-        <p>Value: <span id="actScore"></span></p>
-        <input type="range" min="1" max="36" value="1" class="slider" id="ACT" onchange="change()">
+    <div class="well">
+        <!-- <p>SAT Score Slider:</p> -->
+        <p>SAT Cutoff: <span id="satScore"></span></p>
+        <input type="range" class="slider" min="400" max="1600" value="400" id="SAT" onchange="change()">
+        <!-- <p>ACT Score Slider:</p> -->
+        <p>ACT Cutoff: <span id="actScore"></span></p>
+        <input type="range" min="0" max="36" value="0" class="slider" id="ACT" onchange="change()">
         
         <br/>
         <p>Region:</p>

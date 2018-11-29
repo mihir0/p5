@@ -36,7 +36,6 @@ function start() {
         if (error) {
             console.error(error.error);
         }
-        // globalCSV = csv;
         // READ CSV
         var csvTrimmed = []; //this list only contains the columns we care about
         for (var i = 1; i < csv.length; i++) {
@@ -110,28 +109,28 @@ function start() {
             .on("brushstart", brushstart('brush1'));
         brush1_container = chart1.append('g')
             .attr("class", "brush")
-            .call(brush1)
+            .call(brush1);
         brush2 = d3.svg.brush().extent([salaryExtent[0], admissionExtent[0]], [salaryExtent[1], admissionExtent[1]])
             .x(salaryScale).y(admissionScale)
             .on("brush", brushing('chart2'))
             .on("brushstart", brushstart('brush2'));
         brush2_container = chart2.append('g')
             .attr("class", "brush")
-            .call(brush2)
+            .call(brush2);
         brush3 = d3.svg.brush().extent([debtExtent[0], incomeExtent[0]], [debtExtent[1], incomeExtent[1]])
             .x(debtScale).y(incomeScale)
             .on("brush", brushing('chart3'))
             .on("brushstart", brushstart('brush3'));
         brush3_container = chart3.append('g')
             .attr("class", "brush")
-            .call(brush3)
+            .call(brush3);
         brush4 = d3.svg.brush().extent([salaryExtent[0], expenditureExtent[0]], [salaryExtent[1], expenditureExtent[1]])
             .x(salaryScale).y(expenditureScale)
             .on("brush", brushing('chart4'))
             .on("brushstart", brushstart('brush4'));
         brush4_container = chart4.append('g')
             .attr("class", "brush")
-            .call(brush4)
+            .call(brush4);
 
         // DRAW AXES
         chart1
@@ -232,7 +231,7 @@ function start() {
             .attr("class", "dots")
             .on("click", function(d, i) {
                 onClick(d);
-            })
+            });
         chart2.selectAll("circle")
             .data(csvTrimmed)
             .enter()
@@ -245,7 +244,7 @@ function start() {
             .attr("class", "dots")
             .on("click", function(d, i) {
                 onClick(d);
-            })
+            });
         chart3.selectAll("circle")
             .data(csvTrimmed)
             .enter()
@@ -258,7 +257,7 @@ function start() {
             .attr("class", "dots")
             .on("click", function(d, i) {
                 onClick(d);
-            })
+            });
         chart4.selectAll("circle")
             .data(csvTrimmed)
             .enter()
@@ -271,7 +270,7 @@ function start() {
             .attr("class", "dots")
             .on("click", function(d, i) {
                 onClick(d);
-            })
+            });
     });
 }
 
@@ -348,7 +347,6 @@ function brushstart(brushName) {
 var satslider = document.getElementById("SAT");
 var satoutput = document.getElementById("satScore");
 satoutput.innerHTML = document.getElementById("SAT").value;
-
 satslider.oninput = function() {
     satoutput.innerHTML = this.value;
 }
@@ -357,29 +355,29 @@ satslider.oninput = function() {
 var actslider = document.getElementById("ACT");
 var actoutput = document.getElementById("actScore");
 actoutput.innerHTML = document.getElementById("ACT").value;
-
 actslider.oninput = function() {
     actoutput.innerHTML = this.value;
 }
 
 //Widgets :)
 function change() {
+    console.log('change');
     chart1.selectAll('circle')
-    .style('visibility', function(d){
-        return select(d);
-    })
+        .style('visibility', function(d){
+            return select(d);
+        });
     chart2.selectAll('circle')
-    .style('visibility', function(d){
-        return select(d);
-    })
+        .style('visibility', function(d){
+            return select(d);
+        });
     chart3.selectAll('circle')
-    .style('visibility', function(d){
-        return select(d);
-    })
+        .style('visibility', function(d){
+            return select(d);
+        });
     chart4.selectAll('circle')
-    .style('visibility', function(d){
-        return select(d);
-    })
+        .style('visibility', function(d){
+            return select(d);
+        });
 }
 
 function select(d) {
@@ -388,11 +386,9 @@ function select(d) {
     var s = false;
     var a = false;
     if (document.getElementById("region").value == "all") {
-        //return "visible";
         r = true;
     }
     if (d.Region == document.getElementById("region").value) {
-        //return "visible";
         r = true;
     }
     if (document.getElementById("locale").value == "all") {
@@ -401,15 +397,15 @@ function select(d) {
     if (d.Locale == document.getElementById("locale").value) {
         l = true;
     }
-    if (document.getElementById("SAT").value == 400) {
-        s = true;
-    }
+    // if (document.getElementById("SAT").value == 400) {
+    //     s = true;
+    // }
     if (d.satData >= document.getElementById("SAT").value) {
         s = true;
     }
-    if (document.getElementById("ACT").value == 1) {
-        a = true;
-    }
+    // if (document.getElementById("ACT").value == 1) {
+    //     a = true;
+    // }
     if (d.actData >= document.getElementById("ACT").value) {
         a = true;
     }
