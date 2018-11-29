@@ -4,7 +4,6 @@
 	<meta charset="UTF-8">
 	<title>Project 5</title>
     <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="main.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
@@ -30,15 +29,15 @@
             </div>
         </div>
         <div class="column main">
-            <div class="jumbotron">
+            <div class="well">
                 <span>
-                    <h1 id="universityTitle">Georgia Institute of Technology</h1>
+                    <h1 id="detailUniversityTitle">TEST</h1>
                 </span>
                 <hr>
                 <ul class="list-group">
-                        <li class="list-group-item">
-                            <span><b>Control: </b></span><span id="detailControl">TEST</span>
-                        </li>
+                    <li class="list-group-item">
+                        <span><b>Control: </b></span><span id="detailControl">TEST</span>
+                    </li>
                     <li class="list-group-item">
                         <span><b>Region: </b></span><span id="detailRegion">TEST</span>
                     </li>
@@ -58,7 +57,7 @@
                         <span><b>Undergrad Population: </b></span><span id="detailUndergrad">TEST</span>
                     </li>
                     <li class="list-group-item">
-                        <span><b>Average Cost of Attendance: </b></span><span id="detailCost">TEST</span>
+                        <span><b>Average Cost: </b></span><span id="detailCost">TEST</span>
                     </li>
                     <li class="list-group-item">
                         <span><b>Median Debt: </b></span><span id="detailDebt">TEST</span>
@@ -67,18 +66,16 @@
                         <span><b>Mean Earnings 8 Years After Entry: </b></span><span id="detailSalary">TEST</span>
                     </li>
                     <li class="list-group-item">
-                        <span><b>Average Family Income: </b></span><span id="income">TEST</span>
+                        <span><b>Average Family Income: </b></span><span id="detailIncome">TEST</span>
                     </li>
                     <li class="list-group-item">
-                        <span><b>Expenditure Per Student: </b></span><span id="expenditure">TEST</span>
+                        <span><b>Expenditure Per Student: </b></span><span id="detailExpenditure">TEST</span>
                     </li>
                 </ul>
             </div>
-    </div>
+        </div>
     </div>
     <div>
-
-        
         <p>SAT Score Slider:</p>
         <p>Value: <span id="satScore"></span></p>
         <input type="range" min="400" max="1600" value="400" class="slider" id="SAT" onchange="change()">
@@ -118,9 +115,7 @@
             <option value="Remote Town">Remote Town</option>
             <option value="Small City">Small City</option>
             <option value="Small Suburb">Small Suburb</option>
-    </div>
-    
-</body>
-<script src="main.js"></script>
-
-</html>
+        </div>
+        <script src="main.js"></script>
+    </body>
+    </html>

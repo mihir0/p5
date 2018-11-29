@@ -36,10 +36,10 @@ function start() {
         if (error) {
             console.error(error.error);
         }
-
+        // globalCSV = csv;
         // READ CSV
         var csvTrimmed = []; //this list only contains the columns we care about
-        for (var i = 0; i < csv.length; ++i) {
+        for (var i = 1; i < csv.length; i++) {
             let temp = {};
             temp['debt'] = Number(csv[i]['Median Debt']); //Dont know which debt we wanted to use we can change if wanted
             temp['salary'] = Number(csv[i]['Mean Earnings 8 years After Entry']);
@@ -52,6 +52,10 @@ function start() {
             temp['Locale'] = csv[i]['Locale'];
             temp["satData"] = Number(csv[i]["SAT Average"]);
             temp['actData'] = Number(csv[i]["ACT Median"]);
+            // addition details
+            temp['name'] = csv[i]['Name'];
+            temp['undergrad'] = Number(csv[i]['Undergrad Population']);
+            temp['control'] = csv[i]['Control'];
             csvTrimmed.push(temp);
         }
 
@@ -278,6 +282,21 @@ function onClick(d) {
     chart2.selectAll('circle').classed('clicked', (circle) => (circle.index === d.index));
     chart3.selectAll('circle').classed('clicked', (circle) => (circle.index === d.index));
     chart4.selectAll('circle').classed('clicked', (circle) => (circle.index === d.index));
+    // set info panel
+    d3.select('#detailUniversityTitle').text(d['name']);
+    d3.select('#detailControl').text(d['control']);
+    d3.select('#detailRegion').text(d['Region']);
+    d3.select('#detailLocale').text(d['Locale']);
+    d3.select('#detailAdmission').text(d['admission'] * 100.0 + '%');
+    d3.select('#detailAct').text(d['actData']);
+    d3.select('#detailSat').text(d['satData']);
+    d3.select('#detailUndergrad').text(d['undergrad']);
+    d3.select('#detailCost').text(d['cost']);
+    d3.select('#detailDebt').text(d['debt']);
+    d3.select('#detailSalary').text(d['salary']);
+    d3.select('#detailIncome').text(d['income']);
+    d3.select('#detailExpenditure').text(d['expenditure']);
+    
 }
 
 function brushing(chartName) {
@@ -292,7 +311,7 @@ function brushing(chartName) {
         // console.log(e);
         // if empty brush
         if (e[0][0] == e[1][0] && e[0][1] == e[1][1]) {
-            console.log('empty brush');
+            // console.log('empty brush');
             return;
         }
         
@@ -318,7 +337,7 @@ function brushstart(brushName) {
         d3.selectAll("circle").classed('faded', false);
         for (var i = 0; i < 4; i++) {
             if (i != currentBrush) {
-                console.log(i, currentBrush);
+                // console.log(i, currentBrush);
                 containers[i].call(brushes[i].clear());
             }
         }
