@@ -4,7 +4,8 @@ var chart1, chart2, chart3, chart4;
 var brush1, brush2, brush3, brush4;
 var brush1_container, brush2_container, brush3_container, brush4_container;
 function start() {
-    var width = 700, height = 500, radius = 2;
+    // console.log(window.innerHeight);
+    var width = 700, height = 475, radius = 2;
     var padding = {left: 80, right: 80, top: 80, bottom: 80};
 
     //Method to move data marks to the front
@@ -286,15 +287,15 @@ function onClick(d) {
     d3.select('#detailControl').text(d['control']);
     d3.select('#detailRegion').text(d['Region']);
     d3.select('#detailLocale').text(d['Locale']);
-    d3.select('#detailAdmission').text(d['admission'] * 100.0 + '%');
+    d3.select('#detailAdmission').text((d['admission'] * 100.0).toFixed(2) + '%');
     d3.select('#detailAct').text(d['actData']);
     d3.select('#detailSat').text(d['satData']);
-    d3.select('#detailUndergrad').text(d['undergrad']);
-    d3.select('#detailCost').text(d['cost']);
-    d3.select('#detailDebt').text(d['debt']);
-    d3.select('#detailSalary').text(d['salary']);
-    d3.select('#detailIncome').text(d['income']);
-    d3.select('#detailExpenditure').text(d['expenditure']);
+    d3.select('#detailUndergrad').text(d['undergrad'].toLocaleString());
+    d3.select('#detailCost').text(d['cost'].toLocaleString());
+    d3.select('#detailDebt').text(d['debt'].toLocaleString());
+    d3.select('#detailSalary').text(d['salary'].toLocaleString());
+    d3.select('#detailIncome').text(d['income'].toLocaleString());
+    d3.select('#detailExpenditure').text(d['expenditure'].toLocaleString());
     
 }
 
